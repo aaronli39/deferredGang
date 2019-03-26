@@ -1,0 +1,16 @@
+
+
+Potential Data:
+-Gender
+-Major
+-Loan Defaults
+X-Time To Complete
+-Financial Aid on Income Level
+-Race
+-Degrees- Major=how many peeps
+-Endowment
+-Highest Paying Jobs per grad
+-Common Industries by Major
+
+-Male/Female Majors (most common)
+

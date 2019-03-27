@@ -35,3 +35,6 @@ Our aim is to simplify or help students select colleges good for them, or more e
     * Pie chart for the different most commonly taken majors available
     * No default that the bar chart represents when the user doesn't hover over a section in the pie chart
     * Will remember what section was last hovered over so the bar graph doesn't return to default when the user moves mouse
+
+## Sketch
+<img src="/docs/sketch.jpg" alt="Sketch"/>

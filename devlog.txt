@@ -19,6 +19,13 @@ Logged-in users will be able to create a new blog, update their blog by adding a
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+==============================================================
+xiaS -- 2019-03-27 01:38
+--------------------------------------------------------------
+* Explained D3 feature utilization of transitions
+* Added reference to big data structure
+* Added similarities and differences to the gallery examples
+==============================================================
 
 ==============================================================
 liX -- 2019-03-26 23:28

@@ -20,9 +20,18 @@ Our aim is to simplify or help students select colleges good for them, or more e
   * each college's data is stored as its own spreadsheet and will need to be called in order to access the data
 * The d3 visualization will be dependent on the parameters given and queries inputted
   * enter/exit selections will be used to implement this
-* As transitions will be handled by Flask queries (at least for now; may change later on), there will be no d3 transitions when it comes to data
+* Transitions, duration and delays will be used to animate the graphs and data in response to user behavior to append more information in a box when hovering over the graph.
 * Responsiveness of graphs/data will be contingent upon the graphs used (see below)
 * Examples to be used:
+  * For Large Date: [Bubble Chart](https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html)
+    * Data will be shown through circles of various sizes representing the data for different colleges
+    * Tooltips to show more information including the change in data compared to the years before
+    * Will not be organized to look like a circle
   * [Bar chart with tooltips](http://bl.ocks.org/Caged/6476579)
   * [Dual scale bar chart](https://github.com/liufly/Dual-scale-D3-Bar-Chart)
+    * Will add tooltips to the dual scale bar chart
   * Possibly [simple dashboard](http://bl.ocks.org/NPashaP/96447623ef4d342ee09b)
+    * Bar chart axis for colleges and bars represent number of people
+    * Pie chart for the different most commonly taken majors available
+    * No default that the bar chart represents when the user doesn't hover over a section in the pie chart
+    * Will remember what section was last hovered over so the bar graph doesn't return to default when the user moves mouse

@@ -38,3 +38,6 @@ Our aim is to simplify or help students select colleges good for them, or more e
 
 ## Sketch
 <img src="/docs/sketch.jpg" alt="Sketch"/>
+
+##Data Set
+(https://api.datausa.io/api/?sort=desc&show=university&required=oos_tuition%2Cstate_tuition&sumlevel=all&year=all)

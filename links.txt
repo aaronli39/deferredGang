@@ -1,0 +1,5 @@
+
+Tuition:
+https://api.datausa.io/api/?sort=desc&show=university&required=oos_tuition%2Cstate_tuition&sumlevel=all&year=all
+Net Price:
+https://api.datausa.io/api/?sort=desc&show=university&required=avg_netprice_gos_aid&sumlevel=all&year=all

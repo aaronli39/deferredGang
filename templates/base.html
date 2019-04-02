@@ -1,20 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title> {% block title %}{% endblock %}</title>
-    <meta charset="utf-8"/>
-    <!-- CDN --->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-	{% block xtralinks %}{% endblock %}
-  </head>
-  <body>
+<html lang="en">
 
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    type="text/css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- custom css -->
+  <link rel="stylesheet" href="../static/main.css" type="text/css">
+  <title>{% block title%} {% endblock %}</title>
+</head>
 
-    {% block content %} {% endblock %}
-    <br></br>
-    {% block footer %}
-    <div class="footer">&copy; Nani Desne </div>
-    {% endblock %}
-  </body>
+<body id="body">
+  {% block navbar %}
+  <nav class="navbar navbar-expand-sm navbar-dark fixed-top mb-5" id="containerNav">
+    <div class="container-fluid" id="mainNav">
+      <div class="navbar-header">
+        <a id="navHome" class="navbar-brand" href="/login">
+          <!-- <img id="navImg" src="../static/navLogo.jpeg" alt="" class="img-circle">&nbsp;Home -->
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link pl-4 pr-4 other" href="/login">Classes</a>
+          </li>
+          <li class="nav-item mr-1 ml-1">
+            <div class="btn-group">
+              <img src="https://api.adorable.io/avatars/53/{{ session['email'] }}" alt=""
+                class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropMenu" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+              <div class="dropdown-menu dropdown-menu-right noDeco pb-0">
+                <a class="dropdown-item disabled">{{ session['email'] }}</a>
+                <a href="/clear" class="noDeco text-left" style="text-decoration: none;">
+                  <button class="dropdown-item logBtn" type="button">Logout</button>
+                </a>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  {% endblock %}
+  {% block content %}
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  {% endblock %}
+
+  {% block footer %}
+  {% endblock %}
+</body>
+
 </html>

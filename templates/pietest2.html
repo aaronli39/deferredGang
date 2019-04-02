@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v5.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<!-- Color scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<script>
+
 // set the dimensions and margins of the graph
 var width = 450
     height = 450
@@ -7,7 +21,7 @@ var width = 450
 var radius = Math.min(width, height) / 2 - margin
 
 // append the svg object to the div called 'my_dataviz'
-var svg = d3.select(".piechart")
+var svg = d3.select("#my_dataviz")
   .append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -55,3 +69,6 @@ svg
   .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
   .style("text-anchor", "middle")
   .style("font-size", 17)
+
+
+</script>

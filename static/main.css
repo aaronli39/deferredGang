@@ -343,3 +343,9 @@ color: black;
 #weightList > li {
     list-style-type: none;
 }
+
+.overflow {
+    width: 100%;
+    max-height: 500px;
+    overflow: scroll;
+}

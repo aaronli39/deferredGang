@@ -25,6 +25,7 @@
 </style>
 
 <body>
+    <!-- navbar -->
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="containerNav">
         <div class="container-fluid" id="mainNav">
             <a id="navHome" class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -41,28 +42,34 @@
                 <ul class="navbar-nav text-uppercase ml-auto">
                     <li class="nav-item">
                         <a class="nav-link pl-4 pr-4 other anchor-scroll" data-class-to="#gbsection"
-                            data-scroll-end="bounce" href="#gbsection">Tuition</a>
+                            data-scroll-end="bounce" href="#tuition">Tuition/Net Cost</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-4 pr-4 other" href="#about">Acceptance Rates</a>
+                        <a class="nav-link pl-4 pr-4 other" href="#jobs">Graduating Jobs</a>
                     </li>
                     <li class="nav-item">
-                        <a id="create" class="nav-link" href="/login">Jobs</a>
+                        <a class="nav-link pl-4 pr-4 other" href="#scores">Scores</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- main body container -->
     <div class="container">
         <div class="row mt-5">
-            <input type="text" name="search" id="search_button" placeholder="enter college name(tuition data)"> &nbsp;&nbsp;
+            <input type="text" name="search" id="search_button" placeholder="enter college name(tuition data)">
+            &nbsp;&nbsp;
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 
         <div class="row mt-5">
             <svg class="chart"></svg>
             <div class="piechart"></div>
+
+            <div id="megagraph1">
+                <svg class="chart" id="overflow"></svg>
+            </div>
         </div>
 
     </div>

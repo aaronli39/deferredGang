@@ -2,8 +2,8 @@
 // Source: https://github.com/datasets/sea-level-rise
 var data = [];
 
-var width = 840,
-    height = 10000;
+var width = 8400,
+    height = 7000;
 
 
 var chart = d3.select(".chart")
@@ -21,23 +21,22 @@ d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/co
     };
     // var college_name = colleges['id']['100654'];
     // console.log(data);
-    var index = 0;
-    var counter = 0;
-    while(counter != 100){
+    for (var index = 0; index < tuition_array.length; index++){
       var college = tuition_array[index];
       if (college[0] == '2016'){
-        dataset.children.push( {'Name': colleges['id'][String(college[1])], 'Tuition': college[2]} );
+        if (!isNaN(college[1])){
+          dataset.children.push( {'Name': colleges['id'][String(college[1])], 'Tuition': college[2]} );
+        };
         // college_names.push(colleges['id'][String(college[1])]);
         // tuition.push(college[2]);
         // console.log(college[2]);
-        counter += 1;
       };
-      index += 1;
     };
+    var color = d3.scaleOrdinal(d3['schemeAccent']);
     console.log(dataset);
 
-    var diameter = 600;
-    // var color = d3.scaleOrdinal(d3.schemeCategory20);
+    var diameter = 6000;
+    var color = d3.scaleOrdinal();
     var bubble = d3.pack(dataset)
       .size([diameter, diameter])
       .padding(1.5);
@@ -55,7 +54,7 @@ d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/co
         };
       });
 
-    console.log(bubble(nodes));
+    // console.log(bubble(nodes));
 
     var node = chart.selectAll('.node')
       .data(bubble(nodes).descendants()) //node.bubble is an undefined method
@@ -77,10 +76,10 @@ d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/co
     node.append("circle")
         .attr("r", function(d) {
             return d.r;
+        })
+        .style("fill", function(d,i) {
+            return color(i);
         });
-        // .style("fill", function(d,i) {
-        //     return color(i);
-        // });
 
     node.append("text")
         .attr("dy", ".2em")

@@ -343,3 +343,11 @@ color: black;
 #weightList > li {
     list-style-type: none;
 }
+
+#megagraph1 {
+    max-height: 800px;
+    max-width: 1500px;
+    overflow: scroll;
+    top: 50%;
+    left: 50%
+}

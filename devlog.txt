@@ -21,6 +21,14 @@ Logged-in users will be able to create a new blog, update their blog by adding a
 
 ==============================================================
 
+==============================================================
+chowdhuryR -- 2019-04-02 09:17
+--------------------------------------------------------------
+* Created a JSON file that provides O(1) lookup between university id and university name using an external script
+* Took advantage of JS's ability to cache and GitHub's ability to display raw content to retrieve JSON
+* Created first version of bubble chart for tuition
+==============================================================
+
 liX -- 2019-04-01 21:53
 --------------------------------------------------------------
 * added some bootstrap stuffy
@@ -50,6 +58,12 @@ xiaS -- 2019-03-27 01:38
 * Explained D3 feature utilization of transitions
 * Added reference to big data structure
 * Added similarities and differences to the gallery examples
+==============================================================
+
+==============================================================
+chowdhuryR -- 2019-03-26 18:05
+--------------------------------------------------------------
+* Added d3 explanations
 ==============================================================
 
 ==============================================================

@@ -3,7 +3,7 @@
 var data = [];
 
 var width = 8400,
-    height = 7000;
+    height = 5100;
 
 
 var chart = d3.select(".chart")
@@ -15,8 +15,8 @@ d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/co
   // bubble graph
   d3.json("https://api.datausa.io/api/?sort=desc&show=university&required=oos_tuition%2Cstate_tuition&sumlevel=all&year=all").then(function(data) {
     var tuition_array = data['data'];
-    var college_names = [];
-    var tuition = [];
+    var numbers = [];
+    // var tuition = [];
     var dataset = {
       'children':[]
     };
@@ -27,17 +27,27 @@ d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/co
       if (college[0] == '2016'){
         if (!isNaN(college[1])){
           dataset.children.push( {'Name': colleges['id'][String(college[1])], 'Tuition': college[2]} );
+          // tuition.push(college[2]);
         };
         // college_names.push(colleges['id'][String(college[1])]);
-        // tuition.push(college[2]);
         // console.log(college[2]);
       };
     };
-    var color = d3.scaleOrdinal(d3['schemeAccent']);
+
+    for (var i = 0; i < dataset.children.length; i++){
+      numbers.push(i);
+    }
+
+    var color = d3.scaleOrdinal(d3['schemeAccent'])
+      .domain(numbers)
+      .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+
     console.log(dataset);
 
     var diameter = 6000;
-    var color = d3.scaleOrdinal();
+
+    // console.log(color(1));
+
     var bubble = d3.pack(dataset)
       .size([diameter, diameter])
       .padding(1.5);
@@ -64,53 +74,83 @@ d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/co
           return  !d.children
       })
       .append('g')
+        .on('mouseover', function(d){
+          // Get current event info
+          // console.log(d3.event);
+          //
+          // // Get x & y co-ordinates
+          // console.log(d3.mouse(this));
+          hover(d);
+        })
+        .on('mouseout', stop_hover)
       .attr('class', 'node')
       .attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")";
-      });
+      })
 
-    node.append("title")
-        .text(function(d) {
-            return d.Name + ": " + d.Count;
-        });
+    // node.append("title")
+    //     .text(function(d) {
+    //         return d.Name + ": " + d.Count;
+    //     });
 
     node.append("circle")
         .attr("r", function(d) {
             return d.r;
         })
         .style("fill", function(d,i) {
-            return color(i);
+          // console.log(i, color(i));
+          // console.log(numbers);
+          return color(i);
         });
 
-    node.append("text")
-        .attr("dy", ".2em")
-        .style("text-anchor", "middle")
-        .text(function(d) {
-            return d.data.Name.substring(0, d.r / 3);
-        })
-        .attr("font-family", "sans-serif")
-        .attr("font-size", function(d){
-            return d.r/5;
-        })
-        .attr("fill", "white");
+    // node.append("text")
+    //     .attr("dy", ".2em")
+    //     .style("text-anchor", "middle")
+    //     .text(function(d) {
+    //         return d.data.Name.substring(0, d.r / 3);
+    //     })
+    //     .attr("font-family", "sans-serif")
+    //     .attr("font-size", function(d){
+    //         return d.r/5;
+    //     })
+    //     .attr("fill", "white");
 
-    node.append("text")
-        .attr("dy", "1.3em")
-        .style("text-anchor", "middle")
-        .text(function(d) {
-            return d.data.Tuition;
-        })
-        .attr("font-family",  "Gill Sans", "Gill Sans MT")
-        .attr("font-size", function(d){
-            return d.r/5;
-        })
-        .attr("fill", "white");
+    // node.append("text")
+    //     .attr("dy", "1.3em")
+    //     .style("text-anchor", "middle")
+    //     .text(function(d) {
+    //         return d.data.Tuition;
+    //     })
+    //     .attr("font-family",  "Gill Sans", "Gill Sans MT")
+    //     .attr("font-size", function(d){
+    //         return d.r/5;
+    //     })
+    //     .attr("fill", "white");
 
         d3.select(self.frameElement)
-            .style("height", diameter + "px");
+            .style("height", (diameter / 2) + "px");
 
   });
 });
+
+var hover = function(d){
+  // console.log(d);
+  chart.append('text')
+    .attr('x', d.x)
+    .attr('y', d.y)
+    .text(d.data.Name + ': $' + d.data.Tuition)
+    .attr('id', 'popup');
+    // .attr('transform', function(d){
+    //   return 'translate(' + x + ',' + y + ')';
+    // });
+  // console.log(chart.selectAll('popup'));
+}
+
+var stop_hover = function(d){
+  // console.log(d3.selectAll('#popup'));
+  d3.selectAll('#popup').remove();
+};
+
 
 // var years = [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014];
 // var values = [6.297493046, 6.310933553, 6.452568661, 6.62763131, 6.733920367, 6.865806069, 6.848689771, 6.920582014, 7.087460011,

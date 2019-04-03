@@ -344,8 +344,10 @@ color: black;
     list-style-type: none;
 }
 
-.overflow {
-    max-width: 800px;
-    max-height: 500px;
+#megagraph1 {
+    max-height: 800px;
+    max-width: 1500px;
     overflow: scroll;
+    top: 50%;
+    left: 50%
 }

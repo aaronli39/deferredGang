@@ -101,7 +101,7 @@
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     // Create dummy data
-    var data = {a: 9, b: 20, c:30, d:8, e:12}
+    var data = {Engineer: 9, Analyst: 20, Zoologist:30, Historian:8, Educator:12}
 
     // set the color scale
     var color = d3.scaleOrdinal()
@@ -137,7 +137,7 @@
       .data(data_ready)
       .enter()
       .append('text')
-      .text(function(d){ return "grp " + d.data.key})
+      .text(function(d){ return d.data.key})
       .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
       .style("text-anchor", "middle")
       .style("font-size", 17)

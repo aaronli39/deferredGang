@@ -346,8 +346,10 @@ color: black;
 
 #megagraph1 {
     max-height: 800px;
-    max-width: 1500px;
+    max-width: 100%;
     overflow: scroll;
-    top: 50%;
-    left: 50%
 }
+/* 
+#overflow {
+    width: 100%;
+} */

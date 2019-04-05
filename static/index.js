@@ -361,46 +361,6 @@ var pie = new d3pie("pieChart", {
 	}
 });
 
-var submitB = document.getElementById("submit");
-submitB.addEventListener('click', function(){
-    var input = document.getElementById("search_button").value;
-    console.log(input);
-});
-
-function suggest(){
-    //Variables
-    var input, filter, i;
-    input = document.getElementById('search_button');
-    filter = input.value.toUpperCase();
-    //get list of college names
-    d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
-	ctr = 0;
-	var college_names = colleges['college_names'];
-	//remove any existing list items
-	d3.select("#suggestions").selectAll("li").remove();
-	//add appropriate list items
-	for (i = 0; i < college_names.length/4; i ++){
-	    if(college_names[i].toUpperCase().indexOf(filter) > -1){
-		d3.select("#suggestions").insert("li").text(college_names[i]);
-		ctr ++;
-	    }
-	    if(ctr == 5){
-		break;
-	    }
-	}
-	/*
-	var clist = document.getElementsByTagName("li");
-	console.log(clist);
-	for(i = 3; i < clist.length; i ++){
-	    console.log(clist[i]);
-	    clist[i].addEventListener('click', function(){
-		input.innerHTML = this.innerHTML;
-	    });
-	}
-	*/
-    });    
-}
-
 
 // var years = [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014];
 // var values = [6.297493046, 6.310933553, 6.452568661, 6.62763131, 6.733920367, 6.865806069, 6.848689771, 6.920582014, 7.087460011,

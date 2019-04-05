@@ -151,6 +151,7 @@ var stop_hover = function(d){
 
 ///---///
 
+<<<<<<< HEAD
 var submitB = document.getElementById("submit");
 submitB.addEventListener('click', function(){
     var input = document.getElementById("search_button").value;
@@ -191,6 +192,8 @@ function suggest(){
     });
 }
 
+=======
+>>>>>>> dd0ab6f9ae36eed7fd19ceeb2cf31ca59c5abda9
 
 // var years = [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014];
 // var values = [6.297493046, 6.310933553, 6.452568661, 6.62763131, 6.733920367, 6.865806069, 6.848689771, 6.920582014, 7.087460011,

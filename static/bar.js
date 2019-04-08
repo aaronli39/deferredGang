@@ -9,7 +9,7 @@ var chart1 = d3.select(".chart1")
     .attr("width", width)
     .attr("height", height);
 
-var margin = {'top': 15, 'right': 15, 'bottom': 15, 'left': 15};
+var margin = {'top': 10, 'right': 15, 'bottom': 20, 'left': 15};
 
 var selected_universities = ['Alabama A & M University', 'Princeton University', 'Harvey Mudd College'];
 
@@ -84,23 +84,22 @@ var tuition_bar = function(colleges, data){
     };
 
   //set domains
-var x = d3.scaleBand()
+  var x = d3.scaleBand()
     .range([0, width])
     .domain([0, d3.max(years, function(d){return d.value;})]);
 
   var heightScale = d3.scaleLinear()
     .domain([0, d3.max(tuition_list)]) //d3.min(tuition_list)
-    .range([height - margin['bottom'] * 2, margin['top']]);
+    .range([height - margin.bottom * 2, margin.top]);
 
   var y = d3.scaleLinear()
     .domain([0, d3.max(tuition_list)]) //d3.min(tuition_list)
-    .range([height - margin['bottom'] * 2, margin['top']]);
-
+    .range([height - (margin.bottom * 2), margin.top * 1.2]);
 
   //split sections into equal lengths
   var bandScale = d3.scaleBand()
     .domain(years)
-    .rangeRound([20, width - margin['right'] * 2])
+    .rangeRound([20, width - margin.right * 2])
     .padding(0.1);
   // console.log(bandScale(2013))
 
@@ -123,17 +122,16 @@ var x = d3.scaleBand()
 
   // add x axis
   chart.append('g')
-    .attr('x', width)
-    .attr('y', height - margin['bottom'])
+    .attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
     .call(x_axis.tickSizeOuter(0))
     .append('text')
       .attr('x', width / 2)
-      .attr('y', height - margin['bottom'])
+      .attr('y', height - margin.bottom)
       .text('Year');
 
   // add y axis
   chart.append('g')
-    .attr('transform', 'translate(' + String(margin['left'] * 3.5) + ',' + String(margin['bottom'] * 1.5) + ')')
+    .attr('transform', 'translate(' + String(margin.left * 2.5) + ',' + String(margin.bottom * 1.5) + ')')
     .call(y_axis.tickSizeOuter(0));
 
 
@@ -144,7 +142,7 @@ var x = d3.scaleBand()
     .join('g')
       .attr('transform', function(d){
         // console.log(d, d[years[i]]);
-        return 'translate(' + bandScale(d.year) + ',0)';
+        return 'translate(' + bandScale(d.year) + ', ' + (-1 * margin.bottom) + ')';
       })
     .selectAll('rect')
     .data(function(d){ return d.values; })
@@ -177,6 +175,10 @@ var x = d3.scaleBand()
       .attr('transform', 'translate(' + bandScale(d.year) * 1.25 + ',-2)')
     }
 };
+
+// ============================================================================================================================
+// ============================================================================================================================
+
 
 var acceptance_bar = function(colleges, data){
     /*
@@ -218,21 +220,20 @@ var acceptance_bar = function(colleges, data){
   //set domains
   var x = d3.scaleLinear()
     .domain(years)
-    .range([20, width - margin['right'] * 2]);
+    .range([20, width - margin.right * 2]);
 
   var heightScale = d3.scaleLinear()
     .domain([0, d3.max(percent_list)]) //d3.min(tuition_list)
-    .range([height - margin['bottom'] * 2, margin['top']]);
+    .range([height - margin.bottom * 2, margin.top]);
 
   var y = d3.scaleLinear()
     .domain([0, d3.max(percent_list)]) //d3.min(tuition_list)
-    .range([height - margin['bottom'] * 2, margin['top']]);
-
+    .range([height - margin.bottom * 2, margin.top]);
 
   //split sections into equal lengths
   var bandScale = d3.scaleBand()
     .domain(years)
-    .rangeRound([20, width - margin['right'] * 2])
+    .rangeRound([20, width - margin.right * 2])
     .padding(0.1);
   // console.log(bandScale(2013))
 
@@ -255,17 +256,16 @@ var acceptance_bar = function(colleges, data){
 
   // add x axis
   chart1.append('g')
-    .attr('x', width / 2)
-    .attr('y', height - margin['bottom'])
+    .attr('transform', 'translate(0,' + (height - margin.top) + ')')
     .call(x_axis.tickSizeOuter(0))
     .append('text')
       .attr('x', width / 2)
-      .attr('y', height - margin['bottom'])
+      .attr('y', height - margin.bottom)
       .text('Year');
 
   // add y axis
   chart1.append('g')
-    .attr('transform', 'translate(' + String(margin['left'] * 3.5) + ',' + String(margin['bottom'] * 1.5) + ')')
+    .attr('transform', 'translate(' + String(margin.left * 3.5) + ',' + String(margin.bottom * 1.5) + ')')
     .call(y_axis.tickSizeOuter(0));
 
 
@@ -276,7 +276,7 @@ var acceptance_bar = function(colleges, data){
     .join('g')
       .attr('transform', function(d){
         // console.log(d, d[years[i]]);
-        return 'translate(' + bandScale(d.year) + ',0)';
+        return 'translate(' + bandScale(d.year) + ', ' + (-1 * margin.bottom) + ')';
       })
     .selectAll('rect')
     .data(function(d){ return d.values; })
@@ -306,7 +306,7 @@ var acceptance_bar = function(colleges, data){
       .text(d.name + ': ' + d.rate + '%')
       .attr("dy", "0.35em")
       .attr('id', 'popup')
-      .attr('transform', 'translate(' + bandScale(d.year) * 1.25 + ',-2)')
+      .attr('transform', 'translate(' + bandScale(d.year) * 1.25 + ',-2)');
   }
 };
 

@@ -9,7 +9,7 @@ var chart1 = d3.select(".chart1")
     .attr("width", width)
     .attr("height", height);
 
-var margin = {'top': 10, 'right': 15, 'bottom': 20, 'left': 15};
+var margin = {'top': 10, 'right': 15, 'bottom': 20, 'left': 18};
 
 var selected_universities = ['Alabama A & M University', 'Princeton University', 'Harvey Mudd College'];
 
@@ -122,7 +122,7 @@ var tuition_bar = function(colleges, data){
 
   // add x axis
   chart.append('g')
-    .attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
+    .attr('transform', 'translate(2,' + (height - margin.bottom) + ')')
     .call(x_axis.tickSizeOuter(0))
     .call(g => g.select(".domain").remove())
     .append('text')

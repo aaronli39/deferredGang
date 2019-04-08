@@ -75,7 +75,7 @@ function suggest() {
     }
     //when user clicks a list item, change the search field to that item
     var clist = document.getElementsByTagName("li");
-    for (i = 2; i < clist.length; i++) {
+    for (i = 1; i < clist.length; i++) {
         clist[i].addEventListener('click', function () {
             console.log(this);
             input.value = this.innerText;

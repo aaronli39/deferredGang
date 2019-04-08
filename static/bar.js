@@ -13,13 +13,6 @@ var margin = {'top': 15, 'right': 15, 'bottom': 15, 'left': 15};
 
 var selected_universities = ['Alabama A & M University', 'Princeton University', 'Harvey Mudd College'];
 
-// var selection = document.getElementById('search_button').innerHTML;
-// console.log(selection);
-
-var extract_selection = function(){
-  selection = document.getElementById('search_button').innerHTML;
-}
-
 var update_universities = function(selection){
   /*
    * Updates the selected_universities array with the input.
@@ -30,18 +23,16 @@ var update_universities = function(selection){
   selected_universities.push(selection);
 };
 
-selection = 'Harvard University';
-update_universities(selection);
-
-var generate_graphs = function(){
+var generate_graphs = function(selection){
+  /*
+   * Generates graphs.
+   */
+  update_universities(selection);
   d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
     tuition_bar(colleges);
     acceptance_bar(colleges);
   });
 };
-
-generate_graphs();
-
 
 var tuition_bar = function(colleges){
     /*

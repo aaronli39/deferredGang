@@ -1,5 +1,6 @@
 var width = 500;
 var height = 300;
+var years = [2013, 2014, 2015, 2016];
 
 var chart = d3.select(".chart")
     .attr("width", width)
@@ -49,9 +50,6 @@ var tuition_bar = function(colleges){
           };
         };
       };
-
-    var years = [2013, 2014, 2015, 2016];
-    console.log(bar_data);
 
     //set domains
     var x = d3.scaleLinear()

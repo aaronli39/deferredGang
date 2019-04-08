@@ -302,7 +302,7 @@ var acceptance_bar = function(colleges, data){
 
   var hover = function(d){
     var acceptance_notifier = document.getElementById("acceptance-notifier");
-    acceptance_notifier.innerHTML = d.name + ': $' + d.tuition;
+    acceptance_notifier.innerHTML = d.name + ': ' + d.rate + '%';
   };
 
   var stop_hover = function(d){

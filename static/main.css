@@ -348,8 +348,19 @@ color: black;
     max-height: 800px;
     max-width: 100%;
     overflow: scroll;
+    border: 1px solid gainsboro;
 }
-/* 
-#overflow {
-    width: 100%;
-} */
+
+#suggestions {
+    list-style-type: none;
+}
+
+#suggestions > li {
+    border: 1px solid gainsboro;
+    padding-left: 0.8em;
+    padding-top: 0.3em;
+}
+
+#suggestions > li:hover {
+    background-color: gainsboro;
+}

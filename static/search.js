@@ -1,4 +1,8 @@
-var collegeName, collegeId;
+var collegeName, collegeId, colleges;
+
+d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(data){
+  colleges = data;
+});
 
 var submitB = document.getElementById("submit");
 console.log(submitB);
@@ -7,7 +11,6 @@ submitB.addEventListener('click', function(){
     var filter = input.toUpperCase();
     //remove all list items
     d3.select("#suggestions").selectAll("li").remove();
-    d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
 	var college_names = colleges['college_names'];
 	var college_ids = colleges['names'];
 	var here = false;
@@ -19,14 +22,13 @@ submitB.addEventListener('click', function(){
 		collegeName = college_names[i];
 		collegeId = college_ids[collegeName];
 		console.log(collegeId);
-		generate_graphs(collegeName);
+		generate_graphs(collegeName, colleges);
 	    }
 	}
 	//Print message if college doesn't exist
 	if (!here){
 	    d3.select("#suggestions").insert("li").text(input + " doesn't exist");
 	}
-    });    
 });
 
 function suggest(){
@@ -35,7 +37,6 @@ function suggest(){
     input = document.getElementById('search_button');
     filter = input.value.toUpperCase();
     //get list of college names
-    d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
 	ctr = 0;
 	var college_names = colleges['college_names'];
 	//remove any existing list items
@@ -59,5 +60,4 @@ function suggest(){
 		input.value = this.innerText;
 	    });
 	}
-    });    
 };

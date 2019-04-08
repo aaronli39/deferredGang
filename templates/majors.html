@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="../static/main.css" type="text/css">
 	<title>College data</title>
 </head>
+
 <style>
 	.chart text {
 		fill: black;
@@ -26,45 +27,69 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="containerNav">
 		<div class="container-fluid" id="mainNav">
-			<a id="navHome" class="navbar-brand js-scroll-trigger" href="#page-top">
+			<a id="navHome" class="navbar-brand js-scroll-trigger" href="/">
 				College Data
 			</a>
 			<button id="navButton" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				data-target="#navbarResponsive" aria-con    trols="navbarResponsive" aria-expanded="false"
 				aria-label="Toggle navigation">
 				Menu
 				<i class="fas fa-bars"></i>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav text-uppercase ml-auto">
-					<li class="nav-item">
-						<a class="nav-link pl-4 pr-4 other" href="/search">Search</a>
-                    </li>
-                    <li class="nav-item">
-						<a class="nav-link pl-4 pr-4 other" href="/majors">Majors Data</a>
-					</li>
-                </ul>
-                
 			</div>
 		</div>
 	</nav>
 
 	<!-- main body container -->
 	<div class="container">
+		<div class="row mt-5">
+			<div class="col-md-2"></div>
+			<div class="col text-center">
 
+				<div class="input-group mb-3 mt-5">
+					<input type="text" class="form-control" placeholder="enter college name(tuition data)"
+						aria-label="college_name" aria-describedby="button-addon2" name="search" id="search_button"
+						onkeyup="suggest()">
+					<div class="input-group-append">
+						<button class="btn btn-outline-primary" type="submit" id="submit">Search</button>
+					</div>
+				</div>
+				<div class="text-left">
+					<ul id="suggestions" class="pl-0">
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
+        <!-- job pie chart tag -->
 		<div class="row mt-5">
 			<div class="col-md-3"></div>
+
+			<!-- only change code below -->
 			<div class="megagraph1">
 				<svg class="chart" id="overflow"></svg>
 			</div>
+			<!--  -->
+
 			<div class="col-md-3"></div>
+		</div>
+
+		<div class="row mt-5">
+			<!-- <svg class="chart"></svg> -->
+			<div id='dashboard'>
+			</div>
 		</div>
 		<br><br>
 
 
 		<script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-		<script src="../static/index.js"></script>
-</body>
+		<script src="../static/search.js"></script>
+		<script src="../static/dashboard.js"></script>
+		<script src="../static/dashboard_d.js"></script>
+
+    </body>
 
 </html>

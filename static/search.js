@@ -1,3 +1,30 @@
+function get_tuition(id){
+    d3.json("https://api.datausa.io/api/?sort=desc&show=university&required=oos_tuition%2Cstate_tuition&sumlevel=all&year=all").then(function(data){
+	var tuition_array = data['data'];
+	for(i = 0; i < tuition_array.length; i ++){
+	    if(tuition_array[i][0] == '2016' &&
+	       tuition_array[i][1] == id){
+		console.log(tuition_array[i][2]);
+		//INSERT FUNCTION
+	    }
+	}
+    });
+};
+
+function get_accept(id){
+    d3.json("https://api.datausa.io/api/?sort=desc&show=university&required=applicants_total%2Cadmissions_total&sumlevel=all&year=all").then(function(data){
+	var accept_array = data['data'];
+	for(i = 0; i < accept_array.length; i ++){
+	    if(accept_array[i][0] == '2016' &&
+	       accept_array[i][1] == id){
+		console.log(100*accept_array[i][3]/accept_array[i][2]);
+		//INSERT FUNCTION
+	    }
+	}
+    });
+};
+
+
 var submitB = document.getElementById("submit");
 console.log(submitB);
 submitB.addEventListener('click', function(){
@@ -13,6 +40,10 @@ submitB.addEventListener('click', function(){
 	    //if it exists change var false to true
 	    if(college_names[i].toUpperCase() == filter){
 		here = true;
+		var collegeName = college_names[i];
+		var collegeId = colleges['names'][collegeName]
+		get_tuition(collegeId);
+		get_accept(collegeId);
 	    }
 	}
 	//Print message if college doesn't exist
@@ -53,4 +84,4 @@ function suggest(){
 	    });
 	}
     });    
-}
+};

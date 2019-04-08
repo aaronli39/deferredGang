@@ -1,8 +1,8 @@
 // Source: https://github.com/datasets/sea-level-rise
 var data = [];
 
-var width = 8400,
-    height = 5100;
+var width = 5000,
+    height = 5000;
 
 
 var chart = d3.select(".chart4")
@@ -108,6 +108,8 @@ d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/co
   });
 
   d3.json("https://api.datausa.io/api/?sort=desc&show=university&required=applicants_total%2Cadmissions_total&sumlevel=all&year=all").then(function(data) {
+    width = 1000;
+    height = 1000;
     var acceptance_array = data['data'];
     var numbers = [];
     // var tuition = [];

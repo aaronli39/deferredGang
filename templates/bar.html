@@ -3,202 +3,104 @@
 <html>
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	type="text/css">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<!-- custom css -->
-	<link rel="stylesheet" href="../static/main.css" type="text/css">
-	<title>College data</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    type="text/css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- custom css -->
+    <link rel="stylesheet" href="../static/main.css" type="text/css">
+    <title>College data</title>
 </head>
 <style>
-	.chart text {
-		fill: black;
-		font: 10px sans-serif;
-		text-anchor: end;
-	}
+    .chart text {
+        fill: black;
+        font: 10px sans-serif;
+        text-anchor: end;
+    }
 </style>
 
 <body>
-	<!-- navbar -->
-	<nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="containerNav">
-		<div class="container-fluid" id="mainNav">
-			<a id="navHome" class="navbar-brand js-scroll-trigger" href="#page-top">
-				College Data
-			</a>
-			<button id="navButton" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu
-				<i class="fas fa-bars"></i>
-			</button>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="containerNav">
+        <div class="container-fluid" id="mainNav">
+            <a id="navHome" class="navbar-brand js-scroll-trigger" href="/">
+                College Data
+            </a>
+            <button id="navButton" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
 
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav text-uppercase ml-auto">
-					<li class="nav-item">
-						<a class="nav-link pl-4 pr-4 other anchor-scroll" data-class-to="#gbsection"
-							data-scroll-end="bounce" href="#tuition">Tuition/Net Cost</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link pl-4 pr-4 other" href="#jobs">Graduating Jobs</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link pl-4 pr-4 other" href="#scores">Scores</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link pl-4 pr-4 other" href="/search">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-4 pr-4 other" href="/majors">Majors Data</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-	<!-- main body container -->
-	<div class="container">
-		<div class="row mt-5">
-			<div class="col-md-2"></div>
-			<div class="col text-center">
+    <!-- main body container -->
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-2"></div>
+            <div class="col text-center">
 
-				<div class="input-group mb-3 mt-5">
-					<input type="text" class="form-control" placeholder="enter college name(tuition data)"
-						aria-label="college_name" aria-describedby="button-addon2" name="search" id="search_button"
-						onkeyup="suggest()">
-					<div class="input-group-append">
-						<button class="btn btn-outline-primary" type="submit" id="submit">Search</button>
-					</div>
-				</div>
-				<div class="text-left">
-					<ul id="suggestions" class="pl-0">
-					</ul>
-				</div>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
+                <div class="input-group mb-3 mt-5">
+                    <input type="text" class="form-control" placeholder="enter college name(tuition data)"
+                        aria-label="college_name" aria-describedby="button-addon2" name="search" id="search_button"
+                        onkeyup="suggest()">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit" id="submit">Search</button>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <ul id="suggestions" class="pl-0">
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
 
-		<!-- acceptance rate chart tag -->
-		<div class="row mt-5">
-			<div class="col-md-3"></div>
+        <!-- acceptance rate chart tag -->
+        <div class="row mt-5">
+            <div class="col-md-3"></div>
 
-			<!-- only change code below -->
-			<div class="megagraph1">
-				<svg class="chart" id="overflow"></svg>
-			</div>
-			<!--  -->
+            <!-- only change code below -->
+            <div class="megagraph1">
+                <svg class="chart0" id="overflow"></svg>
+            </div>
+            <!--  -->
 
-			<div class="col-md-3"></div>
-		</div>
+            <div class="col-md-3"></div>
+        </div>
 
-		<!-- tuition chart tag -->
-		<div class="row mt-5">
-			<div class="col-md-3"></div>
+        <!-- tuition chart tag -->
+        <div class="row mt-5">
+            <div class="col-md-3"></div>
 
-			<!-- only change code below -->
-			<div class="megagraph1">
-				<svg class="chart1" id="overflow"></svg>
-			</div>
-			<!--  -->
+            <!-- only change code below -->
+            <div class="megagraph1">
+                <svg class="chart1" id="overflow"></svg>
+            </div>
+            <!--  -->
 
-			<div class="col-md-3"></div>
-		</div>
+            <div class="col-md-3"></div>
+        </div>
 
-		<!-- job pie chart tag -->
-		<div class="row mt-5">
-			<div class="col-md-3"></div>
+        <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+        <script src="../static/bar.js"></script>
+        <script src="../static/search.js"></script>
 
-			<!-- only change code below -->
-			<div class="megagraph1">
-				<svg class="chart2" id="overflow"></svg>
-			</div>
-			<!--  -->
-
-			<div class="col-md-3"></div>
-		</div>
-
-		<div class="row mt-5">
-			<!-- <svg class="chart"></svg> -->
-			<div id='dashboard'>
-			</div>
-		</div>
-		<div class="row mt-5">
-			<div class="col-md-3"></div>
-			<div class="megagraph1">
-				<svg class="chart0" id="overflow"></svg>
-			</div>
-			<div class="col-md-3"></div>
-		</div>
-		<br><br>
-
-
-		<script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-		<!-- <script src="../static/index.js"></script> -->
-    <script src="../static/bar.js"></script>
-		<script src="../static/search.js"></script>
-		<!-- <script src="../static/dashboard.js"></script>
-		<script src="../static/dashboard_d.js"></script> -->
-		<!--<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-	-->
-		<!--
-	  <script>
-	    // set the dimensions and margins of the graph
-	    var width = 650
-	    height = 650
-	    margin = 20
-
-	    // The radius of the pieplot is half the width or half the height (smallest one). I substract a bit of margin.
-	    var radius = Math.min(width, height) / 2 - margin
-
-	    // append the svg object to the div called 'my_dataviz'
-	    var svg = d3.select(".piechart")
-	    .append("svg")
-	    .attr("width", width)
-	    .attr("height", height)
-	    .append("g")
-	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-	    // Create dummy data
-	    var data = {Engineer: 9, Analyst: 20, Zoologist:30, Historian:8, Educator:12}
-
-	    // set the color scale
-	    var color = d3.scaleOrdinal()
-	    .domain(data)
-	    .range(d3.schemeSet2);
-
-	    // Compute the position of each group on the pie:
-	    var pie = d3.pie()
-	    .value(function(d) {return d.value; })
-	    var data_ready = pie(d3.entries(data))
-	    // Now I know that group A goes from 0 degrees to x degrees and so on.
-
-	    // shape helper to build arcs:
-	    var arcGenerator = d3.arc()
-	    .innerRadius(0)
-	    .outerRadius(radius)
-
-	    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-	    svg
-	    .selectAll('mySlices')
-	    .data(data_ready)
-	    .enter()
-	    .append('path')
-	    .attr('d', arcGenerator)
-	    .attr('fill', function(d){ return(color(d.data.key)) })
-	    .attr("stroke", "black")
-	    .style("stroke-width", "2px")
-	    .style("opacity", 0.7)
-
-	    // Now add the annotation. Use the centroid method to get the best coordinates
-	    svg
-	    .selectAll('mySlices')
-	    .data(data_ready)
-	    .enter()
-	    .append('text')
-	    .text(function(d){ return d.data.key})
-	    .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-	    .style("text-anchor", "middle")
-	    .style("font-size", 17)
-
-	  </script>
-	  -->
 </body>
 
 </html>

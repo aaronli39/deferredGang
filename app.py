@@ -7,13 +7,16 @@ app = Flask(__name__)  # create instance of class Flask
 def root():
     return render_template("home.html")
 
+
 @app.route("/search")
 def search():
-    return render_template("search.html")
+    return render_template("bar.html")
+
 
 @app.route("/majors")
 def majors():
     return render_template("majors.html")
+
 
 # run app
 if __name__ == "__main__":

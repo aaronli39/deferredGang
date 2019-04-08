@@ -43,8 +43,9 @@ var tuition_bar = function(colleges){
           if ( parseInt(colleges['names'][university]) == college[1]){
             // create an entry in the appropriate slot
             bar_data[college[0] - 2013]['values'].push( {
-              uni_index:college[2],
+              'tuition': college[2],
               'name': university,
+              'year': college[0]
             });
             tuition_list.push(college[2]);
           };
@@ -110,21 +111,45 @@ var tuition_bar = function(colleges){
       .selectAll('g')
       .data(bar_data)
       .join('g')
-        .attr('transform', function(d,i){
+        .attr('transform', function(d){
           // console.log(d, d[years[i]]);
-          return 'translate(' + bandScale(years[i]) + ',0)';
+          return 'translate(' + bandScale(d.year) + ',0)';
         })
       .selectAll('rect')
       .data(function(d){ return d.values; })
       .join('rect')
         .attr('class', function(d,i){ return 'bar' + String(i); })
-        .attr('x', function(d){ return barScale(d['name']); })
+        .attr('x', function(d){ return barScale(d.name); })
         .attr('y', function(d,i){
-          console.log(y(d.uni_index));
-          return y(d.uni_index); })
-        .attr('tuition', function(d,i){ return d.uni_index; })
-        .attr('height', function(d,i) { return height - heightScale(d.uni_index); })
+          return y(d.tuition); })
+        .attr('tuition', function(d,i){ return d.tuition; })
+        .attr('height', function(d,i) { return height - heightScale(d.tuition); })
         .attr('width', barScale.bandwidth())
-        .attr('fill', function(d){ return color(d.name); });
+        .attr('fill', function(d){ return color(d.name); })
+        .on("mouseover", function(d) {
+          console.log(d);
+          d3.select(this).style("fill", d3.rgb(color(d.name)).darker(2));
+          hover(d);
+        })
+        .on("mouseout", function(d) {
+          d3.select(this).style("fill", color(d.name));
+          stop_hover(d);
+        });
+
+    var hover = function(d){
+      // console.log(d);
+      chart.append('text')
+        .attr('x', barScale(d.name))
+        .attr('y', y(d.tuition))
+        .text(d.name + ': $' + d.tuition)
+        .attr('id', 'popup')
+        .attr('transform', 'translate(' + bandScale(d.year) * 1.25 + ',-2)')
+    }
   });
+};
+
+
+var stop_hover = function(d){
+  // console.log(d3.selectAll('#popup'));
+  d3.selectAll('#popup').remove();
 };

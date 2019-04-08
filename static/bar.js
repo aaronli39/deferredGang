@@ -127,14 +127,13 @@ var tuition_bar = function(colleges, data){
     .call(g => g.select(".domain").remove())
     .append('text')
       .attr('x', width / 2)
-      .attr('y', height - margin.bottom)
-      .text('Year');
+      .attr('y', height)
 
   // add y axis
   chart.append('g')
-    .attr('transform', 'translate(' + String(margin.left * 2.5) + ',' + String(margin.bottom * 1.5) + ')')
-    .call(y_axis.tickSizeOuter(0));
-
+    .attr('transform', 'translate(' + String(margin.left * 2.5) + ',' + margin.bottom + ')')
+    .call(y_axis.tickSizeOuter(0))
+    .call(g => g.select(".domain").remove());
 
   // add all bars
   chart.append('svg')
@@ -257,8 +256,9 @@ var acceptance_bar = function(colleges, data){
 
   // add x axis
   chart1.append('g')
-    .attr('transform', 'translate(0,' + (height - margin.top) + ')')
+    .attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
     .call(x_axis.tickSizeOuter(0))
+    .call(g => g.select(".domain").remove())
     .append('text')
       .attr('x', width / 2)
       .attr('y', height - margin.bottom)
@@ -266,8 +266,9 @@ var acceptance_bar = function(colleges, data){
 
   // add y axis
   chart1.append('g')
-    .attr('transform', 'translate(' + String(margin.left * 3.5) + ',' + String(margin.bottom * 1.5) + ')')
-    .call(y_axis.tickSizeOuter(0));
+    .attr('transform', 'translate(' + String(margin.left * 2.5) + ',' + margin.bottom + ')')
+    .call(y_axis.tickSizeOuter(0))
+    .call(g => g.select(".domain").remove());
 
 
   // add all bars

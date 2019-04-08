@@ -9,16 +9,39 @@ var chart1 = d3.select(".chart1")
     .attr("width", width)
     .attr("height", height);
 
-var margin = {'top': 10, 'right': 10, 'bottom': 10, 'left': 10};
+var margin = {'top': 15, 'right': 15, 'bottom': 15, 'left': 15};
 
 var selected_universities = ['Alabama A & M University', 'Princeton University', 'Harvey Mudd College'];
-selected_universities.push('Harvard University');
 
+// var selection = document.getElementById('search_button').innerHTML;
+// console.log(selection);
 
-d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
-  tuition_bar(colleges);
-  acceptance_bar(colleges);
-});
+var extract_selection = function(){
+  selection = document.getElementById('search_button').innerHTML;
+}
+
+var update_universities = function(selection){
+  /*
+   * Updates the selected_universities array with the input.
+   */
+  if (selected_universities[3]){
+    selected_universities.pop();
+  };
+  selected_universities.push(selection);
+};
+
+selection = 'Harvard University';
+update_universities(selection);
+
+var generate_graphs = function(){
+  d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
+    tuition_bar(colleges);
+    acceptance_bar(colleges);
+  });
+};
+
+generate_graphs();
+
 
 var tuition_bar = function(colleges){
     /*
@@ -90,7 +113,7 @@ var tuition_bar = function(colleges){
       .range(["#C0C0C0", "#C0C0C0", "	#C0C0C0", "#6b486b"]);
 
     var x_axis = d3.axisBottom()
-      .scale(x); //this be a fxn
+      .scale(bandScale); //this be a fxn
 
     var y_axis = d3.axisLeft()
       .scale(heightScale);
@@ -99,7 +122,7 @@ var tuition_bar = function(colleges){
     chart.append('g')
       .attr('x', width / 2)
       .attr('y', height - margin['bottom'])
-      .call(x_axis)
+      .call(x_axis.tickSizeOuter(0))
       .append('text')
         .attr('x', width / 2)
         .attr('y', height - margin['bottom'])
@@ -108,7 +131,7 @@ var tuition_bar = function(colleges){
     // add y axis
     chart.append('g')
       .attr('transform', 'translate(' + String(margin['left'] * 3.5) + ',' + String(margin['bottom'] * 1.5) + ')')
-      .call(y_axis);
+      .call(y_axis.tickSizeOuter(0));
 
 
     // add all bars
@@ -132,7 +155,7 @@ var tuition_bar = function(colleges){
         .attr('width', barScale.bandwidth())
         .attr('fill', function(d){ return color(d.name); })
         .on("mouseover", function(d) {
-          console.log(d);
+          // console.log(d);
           d3.select(this).style("fill", d3.rgb(color(d.name)).darker(2));
           hover(d);
         })
@@ -190,7 +213,7 @@ var acceptance_bar = function(colleges){
         };
       };
 
-    console.log(bar_data);
+    // console.log(bar_data);
 
     //set domains
     var x = d3.scaleLinear()
@@ -225,7 +248,7 @@ var acceptance_bar = function(colleges){
       .range(["#C0C0C0", "#C0C0C0", "	#C0C0C0", "#6b486b"]);
 
     var x_axis = d3.axisBottom()
-      .scale(x); //this be a fxn
+      .scale(bandScale); //this be a fxn
 
     var y_axis = d3.axisLeft()
       .scale(heightScale);
@@ -234,7 +257,7 @@ var acceptance_bar = function(colleges){
     chart1.append('g')
       .attr('x', width / 2)
       .attr('y', height - margin['bottom'])
-      .call(x_axis)
+      .call(x_axis.tickSizeOuter(0))
       .append('text')
         .attr('x', width / 2)
         .attr('y', height - margin['bottom'])
@@ -243,7 +266,7 @@ var acceptance_bar = function(colleges){
     // add y axis
     chart1.append('g')
       .attr('transform', 'translate(' + String(margin['left'] * 3.5) + ',' + String(margin['bottom'] * 1.5) + ')')
-      .call(y_axis);
+      .call(y_axis.tickSizeOuter(0));
 
 
     // add all bars
@@ -281,6 +304,7 @@ var acceptance_bar = function(colleges){
         .attr('x', barScale(d.name))
         .attr('y', y(d.rate))
         .text(d.name + ': ' + d.rate + '%')
+        .attr("dy", "0.35em")
         .attr('id', 'popup')
         .attr('transform', 'translate(' + bandScale(d.year) * 1.25 + ',-2)')
     }

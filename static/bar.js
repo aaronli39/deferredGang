@@ -1,4 +1,4 @@
-var width = 500;
+var width = 600;
 var height = 300;
 
 var chart = d3.select(".chart0")
@@ -124,6 +124,7 @@ var tuition_bar = function(colleges, data){
   chart.append('g')
     .attr('transform', 'translate(0,' + (height - margin.bottom) + ')')
     .call(x_axis.tickSizeOuter(0))
+    .call(g => g.select(".domain").remove())
     .append('text')
       .attr('x', width / 2)
       .attr('y', height - margin.bottom)

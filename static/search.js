@@ -1,20 +1,24 @@
-
 var submitB = document.getElementById("submit");
+console.log(submitB);
 submitB.addEventListener('click', function(){
-    console.log("clicked");
     var input = document.getElementById("search_button").value;
-    console.log(input);
+    var filter = input.toUpperCase();
+    //remove all list items
+    d3.select("#suggestions").selectAll("li").remove();
     d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
 	var college_names = colleges['college_names'];
 	var here = false;
 	//add appropriate list items
 	console.log(here);
+	//search for the college name
 	for (i = 0; i < college_names.length; i ++){
+	    //if it exists change var false to true
 	    if(college_names[i].toUpperCase() == filter){
 		here = true;
 	    }
 	}
 	console.log(here);
+	//Print message if college doesn't exist
 	if (!here){
 	    d3.select("#suggestions").insert("li").text("DOESN'T EXIST");
 	}
@@ -38,19 +42,18 @@ function suggest(){
 		d3.select("#suggestions").insert("li").text(college_names[i]);
 		ctr ++;
 	    }
+	    //cut off at 5 list items
 	    if(ctr == 5){
 		break;
 	    }
 	}
-	/*
+	//when user clicks a list item, change the search field to that item
 	var clist = document.getElementsByTagName("li");
-	console.log(clist);
 	for(i = 3; i < clist.length; i ++){
-	    console.log(clist[i]);
 	    clist[i].addEventListener('click', function(){
-		input.innerHTML = this.innerHTML;
+		input.value = this.innerHTML;
+		//TAKE CARE OF & SPECIAL CASE
 	    });
 	}
-	*/
     });    
 }

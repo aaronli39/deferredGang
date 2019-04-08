@@ -166,14 +166,14 @@ var tuition_bar = function(colleges, data){
       });
 
   var hover = function(d){
-    // console.log(d);
-    chart.append('text')
-      .attr('x', barScale(d.name))
-      .attr('y', y(d.tuition))
-      .text(d.name + ': $' + d.tuition)
-      .attr('id', 'popup')
-      .attr('transform', 'translate(' + bandScale(d.year) * 1.25 + ',-2)')
-    }
+    var tuition_notifier = document.getElementById("tuition-notifier");
+    tuition_notifier.innerHTML = d.name + ': $' + d.tuition;
+  };
+
+  var stop_hover = function(d){
+    var tuition_notifier = document.getElementById("tuition-notifier");
+    tuition_notifier.innerHTML = 'Browse over a bar to learn about a college\'s tuition!';
+  };
 };
 
 // ============================================================================================================================
@@ -301,18 +301,12 @@ var acceptance_bar = function(colleges, data){
       });
 
   var hover = function(d){
-    // console.log(d);
-    chart1.append('text')
-      .attr('x', barScale(d.name))
-      .attr('y', y(d.rate))
-      .text(d.name + ': ' + d.rate + '%')
-      .attr("dy", "0.35em")
-      .attr('id', 'popup')
-      .attr('transform', 'translate(' + bandScale(d.year) * 1.25 + ',-2)');
-  }
-};
+    var acceptance_notifier = document.getElementById("acceptance-notifier");
+    acceptance_notifier.innerHTML = d.name + ': $' + d.tuition;
+  };
 
-var stop_hover = function(d){
-  // console.log(d3.selectAll('#popup'));
-  d3.selectAll('#popup').remove();
+  var stop_hover = function(d){
+    var acceptance_notifier = document.getElementById("acceptance-notifier");
+    acceptance_notifier.innerHTML = 'Browse over a bar to learn about a college\'s acceptance rate!';
+  };
 };

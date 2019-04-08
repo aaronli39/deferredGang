@@ -1,7 +1,7 @@
 var width = 500;
 var height = 300;
 
-var chart = d3.select(".chart")
+var chart = d3.select(".chart0")
     .attr("width", width)
     .attr("height", height);
 

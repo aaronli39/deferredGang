@@ -42,11 +42,11 @@ svg
     .attr('d', arcGenerator)
     .attr('fill', function(d){ return(color(d.data.key)) })
     .on('mouseover', function(d) {
-      d3.select(this).style("fill", d3.rgb(color(d.data.key)));
+      d3.select(this).style("fill", d3.rgb(color(d.data.key)).brighter(1));
       hover(d);
     })
     .on('mouseout', function(d) {
-      d3.select(this).style("fill", d3.rgb(color(d.data.key)).darker(1));
+      d3.select(this).style("fill", d3.rgb(color(d.data.key)));
       stop_hover(d);
     })
     .attr("stroke", "black")

@@ -60,6 +60,11 @@ var tuition_bar = function(colleges){
       .domain([0, d3.max(tuition_list)]) //d3.min(tuition_list)
       .range([height - margin['bottom'] * 2, margin['top']]);
 
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(tuition_list)]) //d3.min(tuition_list)
+      .range([height - margin['bottom'] * 2, margin['top']]);
+
+
     //split sections into equal lengths
     var bandScale = d3.scaleBand()
       .domain(years)
@@ -76,8 +81,31 @@ var tuition_bar = function(colleges){
 
     var color = d3.scaleOrdinal()
       .domain(selected_universities)
-      .range(["#C0C0C0", "#C0C0C0", "	#C0C0C0", "#6b486b"])
+      .range(["#C0C0C0", "#C0C0C0", "	#C0C0C0", "#6b486b"]);
 
+    var x_axis = d3.axisBottom()
+      .scale(x); //this be a fxn
+
+    var y_axis = d3.axisLeft()
+      .scale(heightScale);
+
+    // add x axis
+    chart.append('g')
+      .attr('x', width / 2)
+      .attr('y', height - margin['bottom'])
+      .call(x_axis)
+      .append('text')
+        .attr('x', width / 2)
+        .attr('y', height - margin['bottom'])
+        .text('Year');
+
+    // add y axis
+    chart.append('g')
+      .attr('transform', 'translate(' + String(margin['left'] * 3.5) + ',' + String(margin['bottom'] * 1.5) + ')')
+      .call(y_axis);
+
+
+    // add all bars
     chart.append('svg')
       .selectAll('g')
       .data(bar_data)
@@ -91,7 +119,9 @@ var tuition_bar = function(colleges){
       .join('rect')
         .attr('class', function(d,i){ return 'bar' + String(i); })
         .attr('x', function(d){ return barScale(d['name']); })
-        .attr('y', function(d,i){ return heightScale(d.uni_index); })
+        .attr('y', function(d,i){
+          console.log(y(d.uni_index));
+          return y(d.uni_index); })
         .attr('tuition', function(d,i){ return d.uni_index; })
         .attr('height', function(d,i) { return height - heightScale(d.uni_index); })
         .attr('width', barScale.bandwidth())

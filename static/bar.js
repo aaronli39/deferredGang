@@ -17,10 +17,10 @@ var update_universities = function(selection){
   /*
    * Updates the selected_universities array with the input.
    */
-  if (selected_universities[3]){
-    selected_universities.pop();
-  };
-  selected_universities.push(selection);
+    if (selected_universities[3]){
+	selected_universities.pop();
+    }
+    selected_universities.push(selection);
 };
 
 var generate_graphs = function(selection){
@@ -72,10 +72,10 @@ var tuition_bar = function(colleges){
       };
 
     //set domains
-    var x = d3.scaleLinear()
-      .domain(years)
-      .range([20, width - margin['right'] * 2]);
-
+	var x = d3.scaleBand()
+	    .range([0, width])
+	    .domain([0, d3.max(years, function(d){return d.value;})]);
+	
     var heightScale = d3.scaleLinear()
       .domain([0, d3.max(tuition_list)]) //d3.min(tuition_list)
       .range([height - margin['bottom'] * 2, margin['top']]);

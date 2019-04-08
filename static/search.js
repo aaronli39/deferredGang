@@ -1,3 +1,5 @@
+var collegeName, collegeId;
+
 var submitB = document.getElementById("submit");
 console.log(submitB);
 submitB.addEventListener('click', function(){
@@ -7,13 +9,16 @@ submitB.addEventListener('click', function(){
     d3.select("#suggestions").selectAll("li").remove();
     d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
 	var college_names = colleges['college_names'];
+	var college_ids = colleges['names'];
 	var here = false;
 	//search for the college name
 	for (i = 0; i < college_names.length; i ++){
 	    //if it exists change var false to true
 	    if(college_names[i].toUpperCase() == filter){
 		here = true;
-		var collegeName = college_names[i];
+		collegeName = college_names[i];
+		collegeId = college_ids[collegeName];
+		console.log(collegeId);
 		generate_graphs(collegeName);
 	    }
 	}

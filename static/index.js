@@ -5,7 +5,7 @@ var width = 8400,
     height = 5100;
 
 
-var chart = d3.select(".chart")
+var chart = d3.select(".chart4")
     .attr("width", width)
     .attr("height", height);
 

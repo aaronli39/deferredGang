@@ -41,6 +41,14 @@ svg
   .append('path')
     .attr('d', arcGenerator)
     .attr('fill', function(d){ return(color(d.data.key)) })
+    .on('mouseover', function(d) {
+      d3.select(this).style("fill", d3.rgb(color(d.data.key)));
+      hover(d);
+    })
+    .on('mouseout', function(d) {
+      d3.select(this).style("fill", d3.rgb(color(d.data.key)).darker(1));
+      stop_hover(d);
+    })
     .attr("stroke", "black")
     .style("stroke-width", "2px")
     .style("opacity", 0.7)
@@ -50,29 +58,41 @@ svg
   .data(data_ready)
   .enter()
   .append('text')
-  .text(function(d){ return d.data.key+"\n"+d.data.value+"%"})
+  .text(function(d){ return d.data.key+": \n"+d.data.value+"%"})
   .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
   .style("text-anchor", "middle")
   .style("font-size", 17)
-  .append("text")
+  .on('mouseover', function(d) {
+    d3.select(this).style("fill", d3.rgb(color(black)));
+    hover(d);
+  })
+  .on('mouseout', function(d) {
+    d3.select(this).style("fill", d3.rgb(color(black)));
+    stop_hover(d);
+
 
   svg
     .selectAll('mySlices')
     .data(data_ready)
     .enter()
-    .append('text')
 
-    .attr("transform", "translate(" + parseInt(outerRadius + 30, 10) + "," +
+    .attr("transform", "translate(" + parseInt(outerRadius + 30/ 10) + "," +
       parseInt(innerRadius + 30, 10) + ")")
     // Change text style on mouseover
-    .attr('fill', function(d){ return color(d.name); })
-    .on('mouseover', function(d) {
-      d3.select(this).style("fill", d3.rgb(color(d.data.key)).darker(2));
-      hover(d);
-    })
-    .on('mouseout', function(d) {
-      d3.select(this).style("fill", color(d.data.key));
-      stop_hover(d);
+
     })
     .style("font-size", 17)
     .append("text")
+
+var hover = function(d){
+  // console.log(d);
+  pie.append('text')
+    .text(d.data.key + ': ' + d.data.value + '%')
+    .attr('id', 'popup')
+    .attr('transform', 'translate(' + bandScale(d.data.value) * 1.25 + ',-2)');
+}
+
+var stop_hover = function(d){
+  // console.log(d3.selectAll('#popup'));
+  d3.selectAll('#popup').remove();
+};

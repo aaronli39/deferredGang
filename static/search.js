@@ -8,8 +8,6 @@ submitB.addEventListener('click', function(){
     d3.json('https://raw.githubusercontent.com/aaronli39/deferredGang/master/data/colleges.json').then(function(colleges){
 	var college_names = colleges['college_names'];
 	var here = false;
-	//add appropriate list items
-	console.log(here);
 	//search for the college name
 	for (i = 0; i < college_names.length; i ++){
 	    //if it exists change var false to true
@@ -17,10 +15,9 @@ submitB.addEventListener('click', function(){
 		here = true;
 	    }
 	}
-	console.log(here);
 	//Print message if college doesn't exist
 	if (!here){
-	    d3.select("#suggestions").insert("li").text("DOESN'T EXIST");
+	    d3.select("#suggestions").insert("li").text(input + " doesn't exist");
 	}
     });    
 });
@@ -51,8 +48,8 @@ function suggest(){
 	var clist = document.getElementsByTagName("li");
 	for(i = 3; i < clist.length; i ++){
 	    clist[i].addEventListener('click', function(){
-		input.value = this.innerHTML;
-		//TAKE CARE OF & SPECIAL CASE
+		console.log(this);
+		input.value = this.innerText;
 	    });
 	}
     });    

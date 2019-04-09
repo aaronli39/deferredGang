@@ -15,6 +15,15 @@ pd 07
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+liX/xiaS -- 2019-04-08 20:07
+--------------------------------------------------------------
+* finished beautifying and making search filter work
+* added some headings to title the charts
+* integrated js code with html front end
+* fixed navbar
+* finished project!
+==============================================================
+
 adayR -- 2019-04-08 8:04
 --------------------------------------------------------------
 * Added pie chart with interactivtity

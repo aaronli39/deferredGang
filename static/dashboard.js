@@ -1,3 +1,23 @@
+function get_majors(collegeId) {
+    var apistub = 'https://api.datausa.io/api/?sort=desc&sumlevel=6&degree=5&show=cip&year=2016&university=';
+    apistub = apistub + collegeId;
+    apistub = apistub + '&required=grads_total&where=grads_total%3A!0';
+    d3.json(apistub).then(function (data) {
+        majors = data['data'];
+    });
+    var total = 0;
+    var list_majors = [];
+    for (i = 0; i < majors.length; i++) {
+            total += majors[i][4];
+    }
+    for (i = 0; i < majors.length; i++) {
+        if (majors[i][4] / total > 0.1) {
+            list_majors.push(majors[i][2]);
+            list_majors.push(majors[i][4] / total);
+        }
+    }
+    return list_majors;
+}
 // set the dimensions and margins of the graph
 var width = 450
     height = 450
@@ -15,7 +35,7 @@ var svg = d3.select("#my_dataviz")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 // Create dummy data
-var data = {jobs: 9, b: 20, c:30, d:8, e:12}
+var data = get_majors(collegeId)
 
 // set the color scale
 var color = d3.scaleOrdinal()

@@ -41,3 +41,9 @@ Our aim is to simplify or help students select colleges good for them, or more e
 
 ##Data Set
 (https://api.datausa.io/api/?sort=desc&show=university&required=oos_tuition%2Cstate_tuition&sumlevel=all&year=all)
+
+
+##Limitations
+
+We were not able to make the pie chart- the function we ran kept making arrays that infinitely expanded with the same data cycling over again.  As such, we removed the code for the pie chart and links for it.
+
